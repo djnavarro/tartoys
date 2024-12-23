@@ -36,16 +36,80 @@ dice_make <- function(spells_dat) {
 
 dice_plot <- function(dice_dat, output) {
 
-  pic <- ggplot(dice_dat, aes(y = dice_txt, fill = school)) +
-    geom_bar() +
-    theme_bw()
+  palette <- hcl.colors(n = 10, palette = "PuOr")
+
+  labs <- dice_dat |>
+    summarise(
+      dice_txt = first(dice_txt),
+      count = n(),
+      .by = dice_txt
+    )
+
+  pic <- ggplot(
+    data = dice_dat,
+    mapping = aes(
+      x = dice_txt,
+      fill = factor(level)
+    )
+  ) +
+    geom_bar(color = "#222") +
+    geom_label_repel(
+      data = labs,
+      mapping = aes(
+        x = dice_txt,
+        y = count,
+        label = dice_txt
+      ),
+      size = 3,
+      direction = "y",
+      seed = 1,
+      nudge_y = 4,
+      color = "#ccc",
+      fill = "#222",
+      arrow = NULL,
+      inherit.aes = FALSE
+    ) +
+    annotate(
+      geom = "text",
+      color = "#ccc",
+      x = 31,
+      y = 22,
+      label = "whyhyyyyyyy????"
+    ) +
+    scale_fill_manual(
+      name = "Spell level",
+      values = palette
+    ) +
+    scale_x_discrete(
+      name = "Increasing average outcome \u27a1",
+      breaks = NULL,
+      expand = expansion(.05)
+    ) +
+    scale_y_continuous(name = NULL) +
+    labs(
+      title = "Frequency of dice rolls described in D&D spell descriptions, by spell level",
+      subtitle = "Why are there so many spells that refer specifically to 12d6?????"
+    ) +
+    theme_void() +
+    theme(
+      plot.background = element_rect(fill = "#222"),
+      text = element_text(color = "#ccc"),
+      axis.text = element_text(color = "#ccc"),
+      axis.title = element_text(color = "#ccc"),
+      plot.margin = unit(c(1, 1, 1, 1), units = "cm"),
+      legend.position = "inside",
+      legend.position.inside = c(.3, .825),
+      legend.direction = "horizontal",
+      legend.title.position = "top",
+      legend.byrow = TRUE
+    )
 
   out <- path(output, "dice_pic.png")
 
   ggsave(
     filename = out,
     plot = pic,
-    width = 1000,
+    width = 2000,
     height = 1000,
     units = "px",
     dpi = 150

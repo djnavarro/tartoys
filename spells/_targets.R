@@ -5,7 +5,7 @@ tar_option_set(
   packages = c(
     "rprojroot", "fs", "tibble", "readr",
     "ggplot2", "dplyr", "stringr",
-    "tidyr", "forcats"
+    "tidyr", "forcats", "ggrepel"
   )
 )
 
