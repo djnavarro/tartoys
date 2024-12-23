@@ -9,7 +9,8 @@ set_output_dir <- function() {
 spells_add_cols <- function(spells_raw) {
   spells_dat <- spells_raw |>
     mutate(
-      dice_txt = str_extract_all(description, "\\b\\d+d\\d+\\b")
+      dice_txt = str_extract_all(description, "\\b\\d+d\\d+\\b"),
+      dice_txt = purrr::map(dice_txt, unique)
     )
   return(spells_dat)
 }
@@ -69,13 +70,6 @@ dice_plot <- function(dice_dat, output) {
       arrow = NULL,
       inherit.aes = FALSE
     ) +
-    annotate(
-      geom = "text",
-      color = "#ccc",
-      x = 31,
-      y = 22,
-      label = "whyhyyyyyyy????"
-    ) +
     scale_fill_manual(
       name = "Spell level",
       values = palette
@@ -88,7 +82,8 @@ dice_plot <- function(dice_dat, output) {
     scale_y_continuous(name = NULL) +
     labs(
       title = "Frequency of dice rolls described in D&D spell descriptions, by spell level",
-      subtitle = "Why are there so many spells that refer specifically to 12d6?????"
+      subtitle = "Or whatever",
+      caption = "Source: https://github.com/rfordatascience/tidytuesday/tree/main/data/2024/2024-12-17"
     ) +
     theme_void() +
     theme(

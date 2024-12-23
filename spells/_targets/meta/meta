@@ -1,8 +1,8 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-dice_dat|stem|aa483ce072275aca|9d3fc9ab2347f80e|2a894cd25297583c|-1196863675||t20080.3801090566s|7857904939edaba5|3233|rds|local|vector|||0.04||
+dice_dat|stem|16d2a8217ed86486|9d3fc9ab2347f80e|0b4ec95b144cba41|-1196863675||t20080.9825300516s|4b6555b91c3304f3|3073|rds|local|vector|||0.022||
 dice_make|function|d769d5862f6b7348|||||||||||||||
-dice_pic|stem|d9ce4528e179a098|84bf35fcf9a7af4a|4f0fc4751d472cea|2068897938||t20080.9468808181s|2d8e656ac7732c01|153|rds|local|vector|||1.034||
-dice_plot|function|b566aaf6d63a25d5|||||||||||||||
+dice_pic|stem|d9ce4528e179a098|84bf35fcf9a7af4a|1fa59ddc522ae123|2068897938||t20080.9856138206s|2d8e656ac7732c01|153|rds|local|vector|||1.279||
+dice_plot|function|dc712af3e07d0c2c|||||||||||||||
 dice_plt|stem|3445b8ea7c1c67a9|8dd1d412b3c8af9a|5bb2727d358c7738|1629516465||t20080.3109921125s|02252b673981b4e4|100501|rds|local|vector|||0.216||
 find_targets_root|function|2850e2487773e9a6|||||||||||||||
 input|stem|c3c23a2bd7f3399f|d318d101d9460f77|2c530c1562a7fbd1|-1867563021|spells.csv|t20080.2792435553s|e62c3e2fb46e65a0|302514|file|local|vector|||0.27||
@@ -11,6 +11,6 @@ read_spells|function|74fc10404d810252|||||||||||||||
 root|stem|f121e17c50ad7eb0|5d253b53850074e2|9eadef7a7cda5a5c|1454681161||t20080.28663004s|0968ba2c0c5b836c|98|rds|local|vector|||0.001||
 set_output_dir|function|ff15fe4c9cf6c73c|||||||||||||||
 spells|stem|aba373091fdab6e6|95cb6e26eb62d4ae|dea9d8bbfacc6288|1589056806||t20080.2866298085s|530f28a8d11a3123|73966|rds|local|vector|||0.256||
-spells_add_cols|function|a44141f31ddc89dc|||||||||||||||
-spells_dat|stem|e39a68026ed6689e|afd1976183cb95ee|bc7d7b6148cc3702|870076270||t20080.3757971364s|53082fcdf1928fcf|74488|rds|local|vector|||0.008||
+spells_add_cols|function|9080c5f770c17291|||||||||||||||
+spells_dat|stem|22903595fa5fe42b|afd1976183cb95ee|bed58737e3c9886c|870076270||t20080.9825296465s|d6980b53480f57ad|74415|rds|local|vector|||0.009||
 spells_raw|stem|aba373091fdab6e6|59172e2df3bf353e|2ac590174ac212bc|-1292801919||t20080.3088739475s|530f28a8d11a3123|73966|rds|local|vector|||0.187||
