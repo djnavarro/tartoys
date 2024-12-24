@@ -1,7 +1,7 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-dice_dat|stem|16d2a8217ed86486|9d3fc9ab2347f80e|0b4ec95b144cba41|-1196863675||t20080.9825300516s|4b6555b91c3304f3|3073|rds|local|vector|||0.022||
-dice_make|function|d769d5862f6b7348|||||||||||||||
-dice_pic|stem|d9ce4528e179a098|84bf35fcf9a7af4a|1fa59ddc522ae123|2068897938||t20080.9856138206s|2d8e656ac7732c01|153|rds|local|vector|||1.279||
+dice_dat|stem|dac0b379a71a1aea|9eb74016cf443b9b|f219064ac2da2f1f|-1196863675||t20081.0005139593s|eaa669cdd5f74e10|33486|rds|local|vector|||0.042||
+dice_make|function|79537b4d224c678d|||||||||||||||
+dice_pic|stem|d9ce4528e179a098|84bf35fcf9a7af4a|6f3e04be12fa9aa8|2068897938||t20081.0005288669s|2d8e656ac7732c01|153|rds|local|vector|||1.281||
 dice_plot|function|dc712af3e07d0c2c|||||||||||||||
 dice_plt|stem|3445b8ea7c1c67a9|8dd1d412b3c8af9a|5bb2727d358c7738|1629516465||t20080.3109921125s|02252b673981b4e4|100501|rds|local|vector|||0.216||
 find_targets_root|function|2850e2487773e9a6|||||||||||||||
@@ -9,8 +9,14 @@ input|stem|c3c23a2bd7f3399f|d318d101d9460f77|2c530c1562a7fbd1|-1867563021|spells
 output|stem|e802fbe6c48ba74a|bb547a251729ff65|6f46adc2cd3fe6a1|3939470||t20080.3170860251s|b3893c47d2f8b380|144|rds|local|vector|||0.315||
 read_spells|function|74fc10404d810252|||||||||||||||
 root|stem|f121e17c50ad7eb0|5d253b53850074e2|9eadef7a7cda5a5c|1454681161||t20080.28663004s|0968ba2c0c5b836c|98|rds|local|vector|||0.001||
+scholastic_dat|stem|24771a614aced80e|59036fe5aaae46c6|3eb94ff3536074e9|984770835||t20081.0456683005s|449037faa65cfd59|401|rds|local|vector|||0.018||
+scholastic_dist|function|c9611e4a28fe3a40|||||||||||||||
+scholastic_make|function|a805e8d031e0cf82|||||||||||||||
+scholastic_mat|stem|a44ac92dac32e35e|ea870b452ec74f60|89419ef5de068d3d|-1972331965||t20081.045668451s|bf317e33ba61450b|310|rds|local|vector|||0.007||
+scholastic_pic|stem|a168bc413ae0b7c6|e7437ebe3ff6d10b|df60fd5fcf43f71a|1487190319||t20081.0544599805s|514534cdb13dcc77|156|rds|local|vector|||0.51||
+scholastic_plot|function|de8eaea5a29a9bcd|||||||||||||||
 set_output_dir|function|ff15fe4c9cf6c73c|||||||||||||||
-spells|stem|aba373091fdab6e6|95cb6e26eb62d4ae|dea9d8bbfacc6288|1589056806||t20080.2866298085s|530f28a8d11a3123|73966|rds|local|vector|||0.256||
+spells|stem|aba373091fdab6e6|aed62ff96c95cc8d|2ac590174ac212bc|1589056806||t20081.0008545077s|530f28a8d11a3123|73966|rds|local|vector|||0.121||
 spells_add_cols|function|9080c5f770c17291|||||||||||||||
 spells_dat|stem|22903595fa5fe42b|afd1976183cb95ee|bed58737e3c9886c|870076270||t20080.9825296465s|d6980b53480f57ad|74415|rds|local|vector|||0.009||
 spells_raw|stem|aba373091fdab6e6|59172e2df3bf353e|2ac590174ac212bc|-1292801919||t20080.3088739475s|530f28a8d11a3123|73966|rds|local|vector|||0.187||

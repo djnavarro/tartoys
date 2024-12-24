@@ -6,21 +6,13 @@ set_output_dir <- function() {
   return(output)
 }
 
-spells_add_cols <- function(spells_raw) {
-  spells_dat <- spells_raw |>
+dice_make <- function(spells) {
+  dice_dat <- spells |>
+    select(name, level, description) |>
     mutate(
       dice_txt = str_extract_all(description, "\\b\\d+d\\d+\\b"),
       dice_txt = purrr::map(dice_txt, unique)
-    )
-  return(spells_dat)
-}
-
-
-# spell dice --------------------------------------------------------------
-
-dice_make <- function(spells_dat) {
-  dice_dat <- spells_dat |>
-    select(name, level, school, dice_txt) |>
+    ) |>
     unnest_longer(
       col = "dice_txt",
       values_to = "dice_txt",
@@ -105,6 +97,97 @@ dice_plot <- function(dice_dat, output) {
     filename = out,
     plot = pic,
     width = 2000,
+    height = 1000,
+    units = "px",
+    dpi = 150
+  )
+
+  return(out)
+}
+
+scholastic_make <- function(spells) {
+  spells |>
+    select(name, school, bard:wizard) |>
+    pivot_longer(
+      cols = bard:wizard,
+      names_to = "class",
+      values_to = "castable"
+    ) |>
+    summarise(
+      count = sum(castable),
+      .by = c("school", "class")
+    ) |>
+    mutate(
+      school = str_to_title(school),
+      class  = str_to_title(class)
+    )
+}
+
+scholastic_dist <- function(dat) {
+  d <- dat |>
+    pivot_wider(
+      names_from = "school",
+      values_from = "count"
+    ) |>
+    as.data.frame()
+  rownames(d) <- d$class
+  d$class <- NULL
+  as.matrix(d)
+}
+
+scholastic_plot <- function(dat, mat, output) {
+
+  # each school is a distribution over classes,
+  # each class is a distribution over schools
+  school_distribution <- t(mat) / (replicate(nrow(mat), colSums(mat)))
+  class_distribution <- mat / replicate(ncol(mat), rowSums(mat))
+
+  # pairwise distances
+  class_dissimilarity <- dist(class_distribution)
+  school_dissimilarity <- dist(school_distribution)
+
+  # hierarchical clustering
+  class_clustering <- hclust(class_dissimilarity, method = "average")
+  school_clustering <- hclust(school_dissimilarity, method = "average")
+
+  # plot
+  pic <- ggplot(dat, aes(school, class, fill = count)) +
+    geom_tile() +
+    scale_x_dendro(
+      clust = school_clustering,
+      guide = guide_axis_dendro(n.dodge = 2),
+      expand = expansion(0, 0),
+      position = "top"
+    ) +
+    scale_y_dendro(
+      clust = class_clustering,
+      expand = expansion(0, 0)
+    ) +
+    scale_fill_distiller(palette = "RdPu") +
+    labs(
+      x = "The Schools of Magic",
+      y = "The Classes of Character",
+      fill = "Number of Learnable Spells"
+    ) +
+    coord_equal() +
+    #theme_void() +
+    theme(
+      plot.background = element_rect(fill = "#222", color = "#222"),
+      plot.margin = unit(c(2, 2, 2, 2), units = "cm"),
+      text = element_text(color = "#ccc"),
+      axis.text = element_text(color = "#ccc"),
+      axis.title = element_text(color = "#ccc"),
+      axis.ticks = element_line(color = "#ccc"),
+      legend.position = "bottom",
+      legend.background = element_rect(fill = "#222", color = "#222")
+    )
+
+  out <- path(output, "scholastic_pic.png")
+
+  ggsave(
+    filename = out,
+    plot = pic,
+    width = 1000,
     height = 1000,
     units = "px",
     dpi = 150
