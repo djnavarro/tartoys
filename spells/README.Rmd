@@ -1,0 +1,53 @@
+---
+output: github_document
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+targets::tar_destroy()
+```
+
+# spells
+
+```{r}
+library(targets)
+tar_manifest()
+```
+
+Status:
+
+```{r}
+tar_outdated()
+```
+
+Run once:
+
+```{r}
+tar_make()
+```
+
+Check status again:
+
+```{r}
+tar_outdated()
+```
+
+Run again:
+
+```{r}
+tar_make()
+```
+
+Load target object:
+
+```{r}
+tar_load("dice_dat")
+dice_dat
+```
+
+
+
