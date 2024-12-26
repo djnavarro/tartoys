@@ -68,6 +68,9 @@ dd
 
 As an aside, here's the outputs:
 
-![](./output/dice_pic.png)
+```{r}
+knitr::include_graphics("./output/dice_pic.png")
+knitr::include_graphics("./output/scholastic_pic.png")
+```
 
-![](./output/scholastic_pic.png)
+
