@@ -64,3 +64,10 @@ dd <- tar_read("dice_dat")
 dd
 ```
 
+## the actual images
+
+As an aside, here's the outputs:
+
+![](./output/dice_pic.png)
+
+![](./output/scholastic_pic.png)
