@@ -41,22 +41,22 @@ Our build function is `tar_make()`, so here goes:
 ``` r
 tar_make()
 #> ▶ dispatched target input
-#> ● completed target input [0.275 seconds, 302.514 kilobytes]
+#> ● completed target input [0.273 seconds, 302.514 kilobytes]
 #> ▶ dispatched target output
 #> ● completed target output [0.002 seconds, 144 bytes]
 #> ▶ dispatched target spells
-#> ● completed target spells [0.081 seconds, 73.966 kilobytes]
+#> ● completed target spells [0.089 seconds, 73.966 kilobytes]
 #> ▶ dispatched target scholastic_dat
-#> ● completed target scholastic_dat [0.017 seconds, 401 bytes]
+#> ● completed target scholastic_dat [0.019 seconds, 401 bytes]
 #> ▶ dispatched target dice_dat
-#> ● completed target dice_dat [0.015 seconds, 33.486 kilobytes]
+#> ● completed target dice_dat [0.017 seconds, 33.486 kilobytes]
 #> ▶ dispatched target scholastic_mat
-#> ● completed target scholastic_mat [0.048 seconds, 310 bytes]
+#> ● completed target scholastic_mat [0.05 seconds, 310 bytes]
 #> ▶ dispatched target dice_pic
-#> ● completed target dice_pic [0.849 seconds, 153 bytes]
+#> ● completed target dice_pic [0.85 seconds, 153 bytes]
 #> ▶ dispatched target scholastic_pic
-#> ● completed target scholastic_pic [0.205 seconds, 156 bytes]
-#> ▶ ended pipeline [1.584 seconds]
+#> ● completed target scholastic_pic [0.209 seconds, 156 bytes]
+#> ▶ ended pipeline [1.603 seconds]
 ```
 
 Having run everything, we check status again:
@@ -78,7 +78,7 @@ tar_make()
 #> ✔ skipped target scholastic_mat
 #> ✔ skipped target dice_pic
 #> ✔ skipped target scholastic_pic
-#> ✔ skipped pipeline [0.066 seconds]
+#> ✔ skipped pipeline [0.067 seconds]
 ```
 
 ## user tools
@@ -136,14 +136,6 @@ dd
 
 As an aside, here’s the outputs:
 
-``` r
-knitr::include_graphics("./output/dice_pic.png")
-```
+![](output/dice_pic.png?raw=true)
 
-<img src="./output/dice_pic.png" width="2000" />
-
-``` r
-knitr::include_graphics("./output/scholastic_pic.png")
-```
-
-<img src="./output/scholastic_pic.png" width="1000" />
+![](output/scholastic_pic.png?raw=true)
