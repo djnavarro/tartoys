@@ -13,16 +13,16 @@ Quick look at the targets that are defined for this pipeline using
 library(targets)
 tar_manifest()
 #> # A tibble: 8 × 2
-#>   name           command                                                  
-#>   <chr>          <chr>                                                    
-#> 1 input          "\"spells.csv\""                                         
-#> 2 output         "set_output_dir()"                                       
-#> 3 spells         "read_csv(input, show_col_types = FALSE)"                
-#> 4 scholastic_dat "scholastic_make(spells)"                                
-#> 5 dice_dat       "dice_make(spells)"                                      
-#> 6 scholastic_mat "scholastic_dist(scholastic_dat)"                        
-#> 7 dice_pic       "dice_plot(dice_dat, output)"                            
-#> 8 scholastic_pic "scholastic_plot(scholastic_dat, scholastic_mat, output)"
+#>   name            command                                                   
+#>   <chr>           <chr>                                                     
+#> 1 input           "\"spells.csv\""                                          
+#> 2 output          "set_output_dir()"                                        
+#> 3 spells          "read_csv(input, show_col_types = FALSE)"                 
+#> 4 scholastic_dat  "scholastic_data(spells)"                                 
+#> 5 dice_dat        "dice_data(spells)"                                       
+#> 6 scholastic_clus "scholastic_clusters(scholastic_dat)"                     
+#> 7 dice_pic        "dice_plot(dice_dat, output)"                             
+#> 8 scholastic_pic  "scholastic_plot(scholastic_dat, scholastic_clus, output)"
 ```
 
 Under the hood this file uses `tar_destroy()` at the beginning, in order
@@ -32,8 +32,8 @@ everything is outdated:
 
 ``` r
 tar_outdated()
-#> [1] "scholastic_dat" "scholastic_mat" "spells"         "scholastic_pic"
-#> [5] "output"         "dice_pic"       "input"          "dice_dat"
+#> [1] "scholastic_clus" "scholastic_dat"  "spells"          "scholastic_pic" 
+#> [5] "output"          "dice_pic"        "input"           "dice_dat"
 ```
 
 Our build function is `tar_make()`, so here goes:
@@ -41,22 +41,22 @@ Our build function is `tar_make()`, so here goes:
 ``` r
 tar_make()
 #> ▶ dispatched target input
-#> ● completed target input [0.273 seconds, 302.514 kilobytes]
+#> ● completed target input [0.284 seconds, 302.514 kilobytes]
 #> ▶ dispatched target output
 #> ● completed target output [0.002 seconds, 144 bytes]
 #> ▶ dispatched target spells
-#> ● completed target spells [0.089 seconds, 73.966 kilobytes]
+#> ● completed target spells [0.084 seconds, 73.966 kilobytes]
 #> ▶ dispatched target scholastic_dat
-#> ● completed target scholastic_dat [0.019 seconds, 401 bytes]
+#> ● completed target scholastic_dat [0.013 seconds, 401 bytes]
 #> ▶ dispatched target dice_dat
 #> ● completed target dice_dat [0.017 seconds, 33.486 kilobytes]
-#> ▶ dispatched target scholastic_mat
-#> ● completed target scholastic_mat [0.05 seconds, 310 bytes]
+#> ▶ dispatched target scholastic_clus
+#> ● completed target scholastic_clus [0.019 seconds, 634 bytes]
 #> ▶ dispatched target dice_pic
-#> ● completed target dice_pic [0.85 seconds, 153 bytes]
+#> ● completed target dice_pic [0.905 seconds, 153 bytes]
 #> ▶ dispatched target scholastic_pic
-#> ● completed target scholastic_pic [0.209 seconds, 156 bytes]
-#> ▶ ended pipeline [1.603 seconds]
+#> ● completed target scholastic_pic [0.195 seconds, 156 bytes]
+#> ▶ ended pipeline [1.617 seconds]
 ```
 
 Having run everything, we check status again:
@@ -75,10 +75,10 @@ tar_make()
 #> ✔ skipped target spells
 #> ✔ skipped target scholastic_dat
 #> ✔ skipped target dice_dat
-#> ✔ skipped target scholastic_mat
+#> ✔ skipped target scholastic_clus
 #> ✔ skipped target dice_pic
 #> ✔ skipped target scholastic_pic
-#> ✔ skipped pipeline [0.067 seconds]
+#> ✔ skipped pipeline [0.068 seconds]
 ```
 
 ## user tools
