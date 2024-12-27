@@ -1,3 +1,5 @@
+# packages used in the pipeline -------------------------------------------
+
 library(targets)
 
 tar_option_set(
@@ -9,7 +11,18 @@ tar_option_set(
   )
 )
 
-tar_source("spells_vis.R")
+# define functions for the pipeline ---------------------------------------
+
+tar_source(files = c("dice.R", "scholastic.R"))
+
+set_output_dir <- function() {
+  root <- find_root(has_file("_targets.R"))
+  output <- path(root, "output")
+  dir_create(output)
+  return(output)
+}
+
+# define the targets ------------------------------------------------------
 
 list(
   # preprocessing targets
@@ -18,14 +31,14 @@ list(
   tar_target(spells, read_csv(input, show_col_types = FALSE)),
 
   # dice plot targets
-  tar_target(dice_dat, dice_make(spells)),
+  tar_target(dice_dat, dice_data(spells)),
   tar_target(dice_pic, dice_plot(dice_dat, output)),
 
   # scholastic plot targets
-  tar_target(scholastic_dat, scholastic_make(spells)),
-  tar_target(scholastic_mat, scholastic_dist(scholastic_dat)),
+  tar_target(scholastic_dat, scholastic_data(spells)),
+  tar_target(scholastic_clus, scholastic_clusters(scholastic_dat)),
   tar_target(
     scholastic_pic,
-    scholastic_plot(scholastic_dat, scholastic_mat, output)
+    scholastic_plot(scholastic_dat, scholastic_clus, output)
   )
 )
