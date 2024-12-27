@@ -1,3 +1,4 @@
+# housekeeping ------------------------------------------------------------
 
 set_output_dir <- function() {
   root <- find_root(has_file("_targets.R"))
@@ -5,6 +6,8 @@ set_output_dir <- function() {
   dir_create(output)
   return(output)
 }
+
+# build the dice rolls plot -----------------------------------------------
 
 dice_make <- function(spells) {
   dice_dat <- spells |>
@@ -104,6 +107,8 @@ dice_plot <- function(dice_dat, output) {
 
   return(out)
 }
+
+# build the schools/class dendrogram+heatmap plot -------------------------
 
 scholastic_make <- function(spells) {
   spells |>
