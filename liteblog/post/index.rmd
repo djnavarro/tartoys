@@ -10,8 +10,16 @@ output:
 #| echo: false
 #| results: "asis"
 
+# shared functions
+source(fs::path(
+  rprojroot::find_root(rprojroot::has_file("_targets.R")),
+  "scripts",
+  "common.R"
+))
+opts <- get_options()
+
 # list of posts
-post_dir <- here::here("post")
+post_dir <- fs::path(opts$root, opts$post)
 post <- post_dir |>
   fs::dir_ls(
     recurse = TRUE,
