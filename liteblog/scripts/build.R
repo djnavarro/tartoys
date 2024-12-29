@@ -10,6 +10,15 @@ page_paths <- function(opt = get_options()) {
   unname(unclass(pages))
 }
 
+# find paths to the static files for the blog
+static_paths <- function(opt = get_options()) {
+  files <- fs::dir_ls(
+    path = fs::path(opt$root, opt$static),
+    recurse = TRUE
+  )
+  unname(unclass(files))
+}
+
 # render a blog post using litedown
 fuse_page <- function(page, opt = get_options()) {
   post_output <- litedown::fuse(page)
@@ -22,13 +31,12 @@ fuse_page <- function(page, opt = get_options()) {
   fs::file_move(post_output, site_output)
 }
 
-# copy the static files into the site folder
-copy_static <- function(opt = get_options()) {
+# copy a static file into the site folder
+copy_file <- function(file, opt = get_options()) {
   fs::dir_create(fs::path(opt$root, opt$site))
-  static_files <- fs::dir_ls(fs::path(opt$root, opt$static), all = TRUE)
   fs::file_copy(
-    static_files,
-    static_files |> stringr::str_replace(
+    file,
+    file |> stringr::str_replace(
       pattern = opt$static,
       replacement = opt$site
     ),
