@@ -57,9 +57,9 @@ new_post <- function(slug, opt = get_options()) {
   num <- fs::path(opt$root, opt$post) |>
     fs::dir_ls(type = "directory") |>
     fs::path_file() |>
-    as.numeric() |>
-    max()
-  num <- num + 1
+    as.numeric()
+  if (length(num) == 0L) num <- 0L
+  num <- max(num) + 1L
   dir <- fs::path(
     opt$root,
     opt$post,
