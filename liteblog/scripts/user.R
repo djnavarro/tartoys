@@ -1,5 +1,15 @@
 # user facing tools intended to for interactive use only
 
+# todo, this shouldn't be duplicated from common.R
+get_options <- function() {
+  list(
+    root = rprojroot::find_root(rprojroot::has_file("_targets.R")),
+    post = "post",
+    site = "_site",
+    static = "static"
+  )
+}
+
 # this could be done better
 clean_up <- function(opt = get_options()) {
   if (fs::dir_exists(fs::path(opt$root, "_targets"))) {
@@ -61,6 +71,12 @@ new_post <- function(slug, opt = get_options()) {
     "---",
     paste("title: ", slug),
     "subtitle: subtitle-text",
+    "output:",
+    "  litedown::html_format:",
+    "    meta:",
+    "      css: [\"default\", \"../../../static/custom.css\"]",
+    "options:",
+    "  toc: true",
     "---",
     "",
     "```{r}",
