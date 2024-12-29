@@ -1,6 +1,12 @@
 ---
-title:  A post that adds some code
-subtitle: This is hardly more interesting
+title:  Hello cruel world
+subtitle: This is a blog post, no idea why it exists
+output:
+  litedown::html_format:
+    meta:
+      css: ["default", "../../../static/custom.css"]
+options:
+  toc: true
 ---
 
 ```{r}
@@ -14,11 +20,9 @@ source(fs::path(
 opts <- get_options()
 ```
 
-Oh look, here is some more text, but now I will add some R code to make it look like this is serious:
 
-```{r}
-stringr::str_to_upper("hello cruel world")
-```
+Oh look, it's a blog post. Written in R. Groundbreaking.
+
 
 ```{r}
 #| label: footer
