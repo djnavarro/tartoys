@@ -1,7 +1,10 @@
 ---
-title: 
+title: A blog made with litedown and targets
+subtitle: It is absurd
 output:
   litedown::html_format:
+    meta:
+      css: ["default", "../static/custom.css"]
     options:
       toc: true
 ---
