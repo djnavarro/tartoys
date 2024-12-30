@@ -11,8 +11,6 @@ output:
 ```{r}
 #| echo: false
 #| results: "asis"
-root <- rprojroot::find_root(rprojroot::has_file("_liteblog.yml"))
-opt  <- yaml::read_yaml(fs::path(root, "_liteblog.yml"))
-source(fs::path(root, opt$source, "_common.R"))
-.blog$post_list(root, opt)
+source("_common.R")
+.blog$post_list()
 ```
