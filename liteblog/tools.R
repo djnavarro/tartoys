@@ -1,10 +1,7 @@
 new_post <- function(file) {
   root <- rprojroot::find_root(rprojroot::has_file("_liteblog.yml"))
   opt <- yaml::read_yaml(fs::path(root, "_liteblog.yml"))
-  dir <- fs::path(
-    root,
-    opt$post
-  )
+  dir <- fs::path(root, opt$source)
   out <- fs::path(dir, file)
   rmd <- c(
     "---",
@@ -12,7 +9,7 @@ new_post <- function(file) {
     "output:",
     "  litedown::html_format:",
     "    meta:",
-    "      css: [\"default\", \"custom.css\"]",
+    "      css: [\"default\", \"_custom.css\"]",
     "options:",
     "  toc: true",
     "---",
@@ -20,11 +17,9 @@ new_post <- function(file) {
     "```{r}",
     "#| label: setup",
     "#| echo: false",
-    "source(fs::path(",
-    "  rprojroot::find_root(rprojroot::has_file(\"_liteblog.yml\")),",
-    "  \"scripts\",",
-    "  \"common.R\"",
-    "))",
+    "root <- rprojroot::find_root(rprojroot::has_file(\"_liteblog.yml\"))",
+    "opt  <- yaml::read_yaml(fs::path(root, \"_liteblog.yml\"))",
+    "source(fs::path(root, opt$source, \"_common.R\"))",
     "```",
     "",
     "Text",

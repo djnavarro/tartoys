@@ -1,0 +1,27 @@
+---
+title:  404
+output:
+  litedown::html_format:
+    meta:
+      css: ["default", "_custom.css"]
+options:
+  toc: true
+---
+
+```{r}
+#| label: setup
+#| echo: false
+root <- rprojroot::find_root(rprojroot::has_file("_liteblog.yml"))
+opt  <- yaml::read_yaml(fs::path(root, "_liteblog.yml"))
+source(fs::path(root, opt$source, "_common.R"))
+```
+
+Alas, no page here.
+
+```{r}
+#| label: footer
+#| echo: false
+#| results: asis
+write_footer()
+```
+

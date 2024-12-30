@@ -3,7 +3,7 @@ title: A blog made with litedown and targets
 output:
   litedown::html_format:
     meta:
-      css: ["default", "custom.css"]
+      css: ["default", "_custom.css"]
     options:
       toc: true
 ---
@@ -22,7 +22,7 @@ post <- post_dir |>
   fs::path_rel(post_dir) |> 
   stringr::str_replace_all("_", "/") |> 
   fs::path_ext_remove() |> 
-  setdiff("index") |> 
+  setdiff(c("index", "404")) |> 
   stringr::str_replace("$", "/index.html") 
 
 purrr::walk(
