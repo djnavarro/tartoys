@@ -12,7 +12,7 @@ new_post <- function(file) {
     "output:",
     "  litedown::html_format:",
     "    meta:",
-    "      css: [\"default\", \"../static/custom.css\"]",
+    "      css: [\"default\", \"custom.css\"]",
     "options:",
     "  toc: true",
     "---",

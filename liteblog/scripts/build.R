@@ -2,7 +2,7 @@ root <- rprojroot::find_root(rprojroot::has_file("_liteblog.yml"))
 
 post_file_list <- function(root, opt) {
   pages <- fs::dir_ls(
-    path = fs::path(root, opt$post),
+    path = fs::path(root, opt$source),
     recurse = TRUE,
     regexp = "[.][rR]?md$"
   )
@@ -13,12 +13,12 @@ post_file_fuse <- function(page, root, opt) {
   post_output <- litedown::fuse(page)
   post_output_file <- fs::path_file(post_output)
   if (post_output_file %in% c("index.html", "404.html")) {
-    site_output <- paste0(opt$site, "/", post_output_file)
+    site_output <- paste0(opt$output, "/", post_output_file)
   } else {
     site_output <- post_output_file |>
       stringr::str_replace_all("_", "/") |>
       stringr::str_replace("\\.html$", "/index.html") |>
-      stringr::str_replace("^", paste0(opt$site, "/"))
+      stringr::str_replace("^", paste0(opt$output, "/"))
   }
   site_output <- fs::path(root, site_output)
   fs::dir_create(fs::path_dir(site_output))
@@ -27,19 +27,21 @@ post_file_fuse <- function(page, root, opt) {
 
 static_file_list <- function(root, opt) {
   files <- fs::dir_ls(
-    path = fs::path(root, opt$static),
-    recurse = TRUE
+    path = fs::path(root, opt$source),
+    recurse = TRUE,
+    regexp = "[.][rR]?md$",
+    invert = TRUE
   )
   unname(unclass(files))
 }
 
 static_file_copy <- function(file, root, opt) {
-  fs::dir_create(fs::path(root, opt$site))
+  fs::dir_create(fs::path(root, opt$output))
   fs::file_copy(
     file,
     file |> stringr::str_replace(
-      pattern = opt$static,
-      replacement = opt$site
+      pattern = opt$source,
+      replacement = opt$output
     ),
     overwrite = TRUE
   )

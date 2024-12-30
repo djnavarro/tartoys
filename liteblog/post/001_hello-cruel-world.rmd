@@ -3,7 +3,7 @@ title:  001_hello-cruel-world.rmd
 output:
   litedown::html_format:
     meta:
-      css: ["default", "../static/custom.css"]
+      css: ["default", "custom.css"]
 options:
   toc: true
 ---

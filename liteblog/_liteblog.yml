@@ -1,3 +1,2 @@
-post: post
-site: site
-static: static
+source: post
+output: site
