@@ -1,0 +1,29 @@
+---
+title: 404
+output:
+  litedown::html_format:
+    meta:
+      css: ["default", "../static/custom.css"]
+    options:
+      toc: true
+---
+
+```{r}
+#| label: setup
+#| echo: false
+source(fs::path(
+  rprojroot::find_root(rprojroot::has_file("_liteblog.yml")),
+  "scripts",
+  "common.R"
+))
+```
+
+There is no page by that name. 
+
+```{r}
+#| label: footer
+#| echo: false
+#| results: asis
+write_footer()
+```
+

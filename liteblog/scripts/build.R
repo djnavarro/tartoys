@@ -12,8 +12,8 @@ post_file_list <- function(root, opt) {
 post_file_fuse <- function(page, root, opt) {
   post_output <- litedown::fuse(page)
   post_output_file <- fs::path_file(post_output)
-  if (post_output_file == "index.html") {
-    site_output <- paste0(opt$site, "/index.html")
+  if (post_output_file %in% c("index.html", "404.html")) {
+    site_output <- paste0(opt$site, "/", post_output_file)
   } else {
     site_output <- post_output_file |>
       stringr::str_replace_all("_", "/") |>
