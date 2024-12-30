@@ -11,7 +11,7 @@ options:
 ```{r}
 #| label: setup
 #| echo: false
-source("../_liteblog.R")
+.blog <- readRDS("../_liteblog.rds")
 ```
 
 Text
@@ -20,6 +20,6 @@ Text
 #| label: footer
 #| echo: false
 #| results: asis
-opt$footer(depth = 2)
+.blog$write_footer(depth = 2)
 ```
 

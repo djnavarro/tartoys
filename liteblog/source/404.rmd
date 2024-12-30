@@ -20,6 +20,7 @@ Text
 #| label: footer
 #| echo: false
 #| results: asis
-opt$footer(depth = 0)
+.blog <- readRDS("../_liteblog.rds")
+.blog$write_footer(depth = 0)
 ```
 

@@ -11,6 +11,6 @@ output:
 ```{r}
 #| echo: false
 #| results: "asis"
-source("../_liteblog.R")
-opt$post_list()
+.blog <- readRDS("../_liteblog.rds")
+.blog$write_post_list()
 ```
