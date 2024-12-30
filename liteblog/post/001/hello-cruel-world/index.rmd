@@ -1,6 +1,5 @@
 ---
 title:  Hello cruel world
-subtitle: This is a blog post, no idea why it exists
 output:
   litedown::html_format:
     meta:

@@ -70,7 +70,6 @@ new_post <- function(slug, opt = get_options()) {
   rmd <- c(
     "---",
     paste("title: ", slug),
-    "subtitle: subtitle-text",
     "output:",
     "  litedown::html_format:",
     "    meta:",
