@@ -3,7 +3,7 @@ title:  _001_hello-cruel-world.rmd
 output:
   litedown::html_format:
     meta:
-      css: ["default", "_blog.css"]
+      css: ["default", "../_liteblog.css"]
 options:
   toc: true
 ---
@@ -11,7 +11,7 @@ options:
 ```{r}
 #| label: setup
 #| echo: false
-source("_blog.R")
+source("../_liteblog.R")
 ```
 
 Text
@@ -20,6 +20,6 @@ Text
 #| label: footer
 #| echo: false
 #| results: asis
-.blog$footer(depth = 2)
+opt$footer(depth = 2)
 ```
 
