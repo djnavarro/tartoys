@@ -3,7 +3,7 @@ title: A blog made with litedown and targets
 output:
   litedown::html_format:
     meta:
-      css: ["default", "_custom.css"]
+      css: ["default", "_blog.css"]
     options:
       toc: true
 ---
@@ -11,6 +11,6 @@ output:
 ```{r}
 #| echo: false
 #| results: "asis"
-source("_common.R")
+source("_blog.R")
 .blog$post_list()
 ```
