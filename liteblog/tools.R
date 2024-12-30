@@ -3,6 +3,7 @@ new_post <- function(file) {
   opt <- yaml::read_yaml(fs::path(root, "_liteblog.yml"))
   dir <- fs::path(root, opt$source)
   out <- fs::path(dir, file)
+  depth <- length(stringr::str_extract_all(file, "_")[[1]])
   rmd <- c(
     "---",
     paste("title: ", file),
@@ -28,7 +29,7 @@ new_post <- function(file) {
     "#| label: footer",
     "#| echo: false",
     "#| results: asis",
-    "write_footer()",
+    paste0(".blog$footer(depth = ", depth, ")"),
     "```",
     ""
   )

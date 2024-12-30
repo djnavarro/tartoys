@@ -1,5 +1,5 @@
 ---
-title:  404
+title:  404.rmd
 output:
   litedown::html_format:
     meta:
@@ -16,12 +16,12 @@ opt  <- yaml::read_yaml(fs::path(root, "_liteblog.yml"))
 source(fs::path(root, opt$source, "_common.R"))
 ```
 
-Alas, no page here.
+Text
 
 ```{r}
 #| label: footer
 #| echo: false
 #| results: asis
-write_footer()
+.blog$footer(depth = 0)
 ```
 

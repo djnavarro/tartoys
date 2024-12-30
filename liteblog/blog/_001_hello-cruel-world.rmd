@@ -1,5 +1,5 @@
 ---
-title:  001_hello-cruel-world.rmd
+title:  _001_hello-cruel-world.rmd
 output:
   litedown::html_format:
     meta:
@@ -22,6 +22,6 @@ Text
 #| label: footer
 #| echo: false
 #| results: asis
-write_footer()
+.blog$footer(depth = 2)
 ```
 
