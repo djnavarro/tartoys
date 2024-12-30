@@ -22,11 +22,16 @@ static_paths <- function(opt = get_options()) {
 # render a blog post using litedown
 fuse_page <- function(page, opt = get_options()) {
   post_output <- litedown::fuse(page)
-  site_output <-stringr::str_replace(
-    string = post_output,
-    pattern = paste0(opt$post, "/"),
-    replacement = paste0(opt$site, "/")
-  )
+  post_output_file <- fs::path_file(post_output)
+  if (post_output_file == "index.html") {
+    site_output <- paste0(opt$site, "/index.html")
+  } else {
+    site_output <- post_output_file |>
+      stringr::str_replace_all("_", "/") |>
+      stringr::str_replace("\\.html$", "/index.html") |>
+      stringr::str_replace("^", paste0(opt$site, "/"))
+  }
+  site_output <- fs::path(opt$root, site_output)
   fs::dir_create(fs::path_dir(site_output))
   fs::file_move(post_output, site_output)
 }

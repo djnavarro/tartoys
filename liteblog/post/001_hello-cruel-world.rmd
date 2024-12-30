@@ -3,7 +3,7 @@ title:  Hello cruel world
 output:
   litedown::html_format:
     meta:
-      css: ["default", "../../../static/custom.css"]
+      css: ["default", "../static/custom.css"]
 options:
   toc: true
 ---
