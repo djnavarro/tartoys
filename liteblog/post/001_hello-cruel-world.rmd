@@ -1,5 +1,5 @@
 ---
-title:  Hello cruel world
+title:  001_hello-cruel-world.rmd
 output:
   litedown::html_format:
     meta:
@@ -12,16 +12,13 @@ options:
 #| label: setup
 #| echo: false
 source(fs::path(
-  rprojroot::find_root(rprojroot::has_file("_targets.R")),
+  rprojroot::find_root(rprojroot::has_file("_liteblog.yml")),
   "scripts",
   "common.R"
 ))
-opts <- get_options()
 ```
 
-
-Oh look, it's a blog post. Written in R. Groundbreaking.
-
+Text
 
 ```{r}
 #| label: footer
