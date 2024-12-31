@@ -1,11 +1,14 @@
 ---
-title:  404
+title: 404
 output:
   litedown::html_format:
     meta:
       css: "../_liteblog.css"
-options:
-  toc: true
+    options:
+      toc: false
+      js_highlight:
+        package: prism
+        style: tomorrow
 ---
 
 ```{r}

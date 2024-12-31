@@ -4,8 +4,11 @@ output:
   litedown::html_format:
     meta:
       css: "../_liteblog.css"
-options:
-  toc: true
+    options:
+      toc: false
+      js_highlight:
+        package: prism
+        style: tomorrow
 ---
 
 ```{r}
@@ -27,9 +30,13 @@ library(forcats)
 library(ggrepel)
 ```
 
+## Read data
+
 ```{r}
 spells <- read_csv("./data/spells.csv", show_col_types = FALSE)
 ```
+
+## Tidy data
 
 ```{r}
 dice_dat <- spells |>
@@ -50,6 +57,8 @@ dice_dat <- spells |>
     dice_txt = factor(dice_txt) |> fct_reorder(dice_val)
   )
 ```
+
+## Make plot
 
 ```{r}
 palette <- hcl.colors(n = 10, palette = "PuOr")
