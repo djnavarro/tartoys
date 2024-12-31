@@ -5,6 +5,8 @@ output:
     meta:
       css: ["@article", "../_liteblog.css"]
       js: ["@sidenotes"]
+      include-before: "_liteblog-header.html"
+      include-after: "_liteblog-footer.html"
     options:
       toc: true
       js_highlight:
@@ -163,12 +165,3 @@ starwars |>
   filter(species == "Human") |> 
   print()
 ```
-
-
-```{r}
-#| label: footer
-#| echo: false
-#| results: asis
-.blog$write_footer()
-```
-
