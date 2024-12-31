@@ -3,13 +3,13 @@ blog|stem|ebc235da5767cb2e|c99bdb0aa30ca44a|f341e8012308c56b|91309708||t20088.23
 blog_css|stem|755c54e67258f682|68c1b9b2edddf9f9|ae2100c7cafaff5f|496574975|_liteblog.css|t20088.2448455842s|d2bd3fe6a6531705|3380|file|local|vector|||0||
 blog_rds|stem|08d5f59e833de599|fe911bc4d358daf9|ae2100c7cafaff5f|-48216532||t0s|a10b0861f057ffab|0|file|local|vector|||0.005||
 Liteblog|object|e550374b711d601d|||||||||||||||
-post_files|pattern|64de8376ae31f6a1|6901d00cd59f4c3d||918091839||||3834|file|local|vector||post_files_cf885d55f2bb2081*post_files_9457b8cec3269fcb*post_files_f72239d1559958a4*post_files_c7eb53a9048ac3b1|0||
+post_files|pattern|5f1b5603b9cc214b|6901d00cd59f4c3d||918091839||||914|file|local|vector||post_files_cf885d55f2bb2081*post_files_9457b8cec3269fcb*post_files_f72239d1559958a4*post_files_c7eb53a9048ac3b1|0||
 post_files_9457b8cec3269fcb|branch|29d844dfec02ec84|6901d00cd59f4c3d|2c530c1562a7fbd1|1979523055|/home/danielle/GitHub/djnavarro/tartoys/liteblog/source/_001_hello-cruel-world.rmd|t20088.1355843816s|a8a4963516828e49|297|file|local|vector|post_files||0||
-post_files_c7eb53a9048ac3b1|branch|260d5eb7fd530a7c|6901d00cd59f4c3d|2c530c1562a7fbd1|1601848618|/home/danielle/GitHub/djnavarro/tartoys/liteblog/source/index.rmd|t20088.1872749699s|fca8c75bc58a7799|830|file|local|vector|post_files||0||
+post_files_c7eb53a9048ac3b1|branch|d5ef8b870454954d|6901d00cd59f4c3d|2c530c1562a7fbd1|1601848618|/home/danielle/GitHub/djnavarro/tartoys/liteblog/source/index.rmd|t20088.2486230882s|2872672c83db7872|914|file|local|vector|post_files||0||
 post_files_cf885d55f2bb2081|branch|35ab22b7aecf9495|6901d00cd59f4c3d|2c530c1562a7fbd1|1175452126|/home/danielle/GitHub/djnavarro/tartoys/liteblog/source/404.rmd|t20088.1804396534s|836bb91145507d24|393|file|local|vector|post_files||0||
 post_files_f72239d1559958a4|branch|709fb0597818ac78|6901d00cd59f4c3d|2c530c1562a7fbd1|1780765317|/home/danielle/GitHub/djnavarro/tartoys/liteblog/source/_002_spell-dice.rmd|t20088.2417110808s|b7a57bcf35b7c8dd|3834|file|local|vector|post_files||0||
 post_fuse|pattern|bbc378d4991c1392|83d14681f0959f4d||-1529801955||||632|rds|local|vector||post_fuse_ee9e7d017d7af8af*post_fuse_227647bfb2fffee8*post_fuse_6216995a2e341a50*post_fuse_04681c9446cc5fae|1.993||
-post_fuse_04681c9446cc5fae|branch|fb4932cd4a7fe95d|83d14681f0959f4d|f1985192dc6b47f0|-1976590279||t20088.2448977148s|f4925d1f4bd18266|151|rds|local|vector|post_fuse||0.026||
+post_fuse_04681c9446cc5fae|branch|fb4932cd4a7fe95d|83d14681f0959f4d|e6dad6ca5ca59bfe|-1976590279||t20088.2486561896s|f4925d1f4bd18266|151|rds|local|vector|post_fuse||0.138||
 post_fuse_227647bfb2fffee8|branch|3233f70dfeef7a6c|83d14681f0959f4d|1a6a63887fca78b3|769585673||t20088.2448808048s|3410934fb1a4c4db|166|rds|local|vector|post_fuse||0.029||
 post_fuse_6216995a2e341a50|branch|b015f89056aa4ed1|83d14681f0959f4d|56e8ebfde205f078|-1669404108||t20088.2448973675s|5b53d96c56a085a8|163|rds|local|vector|post_fuse||1.427||
 post_fuse_ee9e7d017d7af8af|branch|189c755fce417121|83d14681f0959f4d|3654b5196eb5b587|-678435612||t20088.2448804228s|8feae7d5cef8845c|152|rds|local|vector|post_fuse||0.114||

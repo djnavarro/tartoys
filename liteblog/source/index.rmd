@@ -14,9 +14,16 @@ output:
 In the dying days of 2024, a woman who should have been doing something useful like replaying the original Mass Effect trilogy for the n-th time instead decided to learn something about [litedown](https://yihui.org/litedown), [targets](https://books.ropensci.org/targets/), and [legendry](https://teunbrand.github.io/legendry/). This absurdity, which has absolutely no use case whatsoever and should be shunned by one and all, is the inevitable outcome of her poor decision making.
 
 ```{r}
+#| label: post-listing
 #| echo: false
 #| results: "asis"
 .blog <- readRDS("../_liteblog.rds")
 .blog$write_post_list()
+```
+
+```{r}
+#| label: footer
+#| echo: false
+#| results: asis
 .blog$write_footer()
 ```
