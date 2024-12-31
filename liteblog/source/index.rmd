@@ -3,7 +3,7 @@ title: A blog made with litedown and targets
 output:
   litedown::html_format:
     meta:
-      css: ["default", "../_liteblog.css"]
+      css: "../_liteblog.css"
     options:
       toc: true
 ---
