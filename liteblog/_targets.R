@@ -19,9 +19,9 @@ list(
   tar_target(blog_rds, saveRDS(blog, file = "_liteblog.rds"), format = "file"),
   tar_target(blog_css, blog$css, format = "file"),
 
-  # detect file paths
-  tar_target(post_paths, blog$find_posts()),
-  tar_target(static_paths, blog$find_static()),
+  # detect file paths (always run)
+  tar_target(post_paths, blog$find_posts(), cue = tar_cue("always")),
+  tar_target(static_paths, blog$find_static(), cue = tar_cue("always")),
 
   # specify file targets
   tar_target(post_files, post_paths, pattern = map(post_paths), format = "file"),
