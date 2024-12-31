@@ -1,5 +1,5 @@
 ---
-title:  _001_hello-cruel-world.rmd
+title:  Hello cruel world
 output:
   litedown::html_format:
     meta:
