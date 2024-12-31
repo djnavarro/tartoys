@@ -1,0 +1,162 @@
+---
+title: The schools of magic plot
+output:
+  litedown::html_format:
+    meta:
+      css: "../_liteblog.css"
+    options:
+      toc: false
+      js_highlight:
+        package: prism
+        style: tomorrow
+---
+
+```{r}
+#| label: setup
+#| echo: false
+.blog <- readRDS("../_liteblog.rds")
+
+# override the default print method for data frames
+print_tinker <- function(x, ...) {
+  if (inherits(x, "data.frame")) {
+    chr <- xfun:::record_print.default(x, ...)
+    return(xfun::record_print("hello", ...))
+  }
+  xfun::record_print(x, ...)
+}
+```
+
+This is the code used to produce the "schools of magic" dendrogram/heatmap plot that I posted on social media. 
+
+```{r}
+#| label: load-packages
+#| message: false
+library(dplyr)
+library(tidyr)
+library(readr)
+library(tibble)
+library(ggplot2)
+library(stringr)
+library(legendry)
+```
+
+## Read data
+
+As before, we load the `spells` data:
+
+```{r}
+#| label: read-spells
+#| print: print_tinker
+spells <- read_csv("./data/spells.csv", show_col_types = FALSE)
+```
+
+## Tidy data
+
+```{r}
+#| label: scholastic-data
+#| print: print_tinker
+scholastic_data <- spells |>
+  select(name, school, bard:wizard) |>
+  pivot_longer(
+    cols = bard:wizard,
+    names_to = "class",
+    values_to = "castable"
+  ) |>
+  summarise(
+    count = sum(castable),
+    .by = c("school", "class")
+  ) |>
+  mutate(
+    school = str_to_title(school),
+    class  = str_to_title(class)
+  )
+
+print(scholastic_data)
+```
+
+```{r}
+#| label: clustering
+#| print: print_tinker
+# matrix of counts for each school/class combination
+mat <- scholastic_data |>
+  pivot_wider(
+    names_from = "school",
+    values_from = "count"
+  ) |>
+  as.data.frame()
+
+rownames(mat) <- mat$class
+mat$class <- NULL
+mat <- as.matrix(mat)
+
+# each school is a distribution over classes,
+# each class is a distribution over schools
+class_distro  <- mat / replicate(ncol(mat), rowSums(mat))
+school_distro <- t(mat) / (replicate(nrow(mat), colSums(mat)))
+
+# pairwise dissimilarities
+class_dissim  <- dist(class_distro)
+school_dissim <- dist(school_distro)
+
+# hierarchical clustering
+clusters <- list(
+  class = hclust(class_dissim, method = "average"),
+  school = hclust(school_dissim, method = "average")
+)
+```
+
+## Make plot
+
+```{r, dev.args=list(bg="#222")}
+#| label: make-plot
+#| fig.width: 10
+#| fig.height: 10
+pic <- ggplot(
+  scholastic_data, 
+  aes(school, class, fill = count)
+) +
+  geom_tile() +
+  scale_x_dendro(
+    clust = clusters$school,
+    guide = guide_axis_dendro(n.dodge = 2),
+    expand = expansion(0, 0),
+    position = "top"
+  ) +
+  scale_y_dendro(
+    clust = clusters$class,
+    expand = expansion(0, 0)
+  ) +
+  scale_fill_distiller(palette = "RdPu") +
+  labs(
+    x = "The Schools of Magic",
+    y = "The Classes of Character",
+    fill = "Number of Learnable Spells"
+  ) +
+  coord_equal() +
+  theme(
+    plot.background = element_rect(
+      fill = "#222", 
+      color = "#222"
+    ),
+    plot.margin = unit(c(2, 2, 2, 2), units = "cm"),
+    text = element_text(color = "#ccc", size = 14),
+    axis.text = element_text(color = "#ccc"),
+    axis.title = element_text(color = "#ccc"),
+    axis.ticks = element_line(color = "#ccc"),
+    legend.position = "bottom",
+    legend.background = element_rect(
+      fill = "#222", 
+      color = "#222"
+    )
+  )
+
+plot(pic)
+```
+
+```{r}
+#| label: footer
+#| echo: false
+#| results: asis
+.blog$write_footer()
+```
+
