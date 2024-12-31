@@ -13,7 +13,7 @@ body {
   padding: 1em;
   line-height: 1.5;
   background-color: #222;
-  color: #ddd;
+  color: #ccc;
 }
 
 body, .abstract, code, .footnotes, #refs { font-size: 1em; }
@@ -41,7 +41,7 @@ code {
 
 pre > code:not([class]), pre > .language-plain, .box {
   background-color: inherit;
-  border: 1px solid #ddd;
+  border: 1px solid #666;
 }
 
 pre > .message { border-color: #9eeaf9; }
@@ -81,15 +81,21 @@ blockquote {
   border-left: .5em solid #ddd;
 }
 
-hr, .footnotes::before { border: 1px dashed #ddd; }
+hr, .footnotes::before {
+  border: 1px dashed #ddd;
+}
+
 .frontmatter { text-align: center; }
+
 #TOC .numbered {
   padding-left: 0;
   li { list-style: none; }
   ul { padding-left: 1em; }
 }
 
-table, .body h2 { border-bottom: 1px solid #666; }
+table, .body h2 {
+  border-bottom: 1px solid #666;
+}
 
 .body .appendix, .appendix ~ h2 { border-bottom-style: dashed; }
 .main-number::after { content: "."; }
