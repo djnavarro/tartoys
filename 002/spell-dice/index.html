@@ -6,6 +6,7 @@
 <meta name="generator" content="litedown 0.4">
 <title>The spells die rolls plot</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xiee/utils@1.13.60/css/article.min.css">
 <style type="text/css">
 body {
   font-family: sans-serif;
@@ -15,6 +16,20 @@ body {
   line-height: 1.5;
   background-color: #222;
   color: #ccc;
+}
+
+.body, .side, .footnote-backref, .footnote-ref, .footnote-ref:hover,
+.side-right, .side-left, .footnotes {
+  background-color: #222;
+  color: #ccc;
+  box-shadow: none;
+}
+.frontmatter {
+  box-shadow: none;
+}
+.note-ref:hover + .side {
+  background-color: #222;
+  border: 1px solid #666;
 }
 
 body, .abstract, code, .footnotes, #refs { font-size: 1em; }
@@ -65,9 +80,9 @@ pre > .error { background: #f8d7da; border-color: #f8d7da; }
 
 table {
   margin: auto; border-top: 1px solid #666;
-  thead th { border-bottom: 1px solid #333; }
+  thead th { border-bottom: 1px solid #666; }
   th, td { padding: 5px; }
-  thead, tfoot, tr:nth-child(even) { background: #333; }
+  thead, tfoot, tr:nth-child(even) { background: #222; }
 }
 
 .table-full {
@@ -76,10 +91,11 @@ table {
 }
 
 blockquote {
-  color: #333;
   margin: 0;
   padding: 1px 1em;
-  border-left: .5em solid #ddd;
+  border-left: .5em solid #333;
+  background: #222;
+  color: #ccc;
 }
 
 hr, .footnotes::before {
@@ -87,6 +103,11 @@ hr, .footnotes::before {
 }
 
 .frontmatter { text-align: center; }
+
+#TOC {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
 
 #TOC .numbered {
   padding-left: 0;
@@ -146,6 +167,13 @@ section.footnotes {
 <div class="title"><h1>The spells die rolls plot</h1></div>
 </div>
 <div class="body">
+<div id="TOC">
+<ul>
+<li><a href="#sec:read-data">Read data</a></li>
+<li><a href="#sec:tidy-data">Tidy data</a></li>
+<li><a href="#sec:make-plot">Make plot</a></li>
+</ul>
+</div>
 <p>On this page I’ll walk through the code used to produce the “spell dice” plot that I posted on social media. It’s not the most exciting code I’ve ever written but it was useful as a tiny side project that I could use to teach myself targets. Note that this post doesn’t use targets to render the plot, except in the trivial sense the entire blog is built with targets. Within the post, it’s just regular R code. Speaking of which, I suppose I’d best load the packages that the plot relies on:</p>
 <pre><code class="language-r">library(ggplot2)
 library(dplyr)
@@ -286,5 +314,6 @@ plot(pic)
 </div>
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@xiee/utils@1.13.60/js/sidenotes.min.js" defer></script>
 </body>
 </html>

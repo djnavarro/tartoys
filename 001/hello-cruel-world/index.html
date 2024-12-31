@@ -7,6 +7,7 @@
 <title>Hello cruel world</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.19/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xiee/utils@1.13.60/css/article.min.css">
 <style type="text/css">
 body {
   font-family: sans-serif;
@@ -16,6 +17,20 @@ body {
   line-height: 1.5;
   background-color: #222;
   color: #ccc;
+}
+
+.body, .side, .footnote-backref, .footnote-ref, .footnote-ref:hover,
+.side-right, .side-left, .footnotes {
+  background-color: #222;
+  color: #ccc;
+  box-shadow: none;
+}
+.frontmatter {
+  box-shadow: none;
+}
+.note-ref:hover + .side {
+  background-color: #222;
+  border: 1px solid #666;
 }
 
 body, .abstract, code, .footnotes, #refs { font-size: 1em; }
@@ -66,9 +81,9 @@ pre > .error { background: #f8d7da; border-color: #f8d7da; }
 
 table {
   margin: auto; border-top: 1px solid #666;
-  thead th { border-bottom: 1px solid #333; }
+  thead th { border-bottom: 1px solid #666; }
   th, td { padding: 5px; }
-  thead, tfoot, tr:nth-child(even) { background: #333; }
+  thead, tfoot, tr:nth-child(even) { background: #222; }
 }
 
 .table-full {
@@ -77,10 +92,11 @@ table {
 }
 
 blockquote {
-  color: #333;
   margin: 0;
   padding: 1px 1em;
-  border-left: .5em solid #ddd;
+  border-left: .5em solid #333;
+  background: #222;
+  color: #ccc;
 }
 
 hr, .footnotes::before {
@@ -88,6 +104,11 @@ hr, .footnotes::before {
 }
 
 .frontmatter { text-align: center; }
+
+#TOC {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
 
 #TOC .numbered {
   padding-left: 0;
@@ -157,6 +178,7 @@ section.footnotes {
 <li><a href="#sec:blocks">Blocks</a></li>
 </ul>
 </li>
+<li><a href="#sec:footnotes-sidenotes">Footnotes, sidenotes</a></li>
 <li><a href="#sec:equations">Equations</a></li>
 <li><a href="#sec:code">Code</a></li>
 </ul>
@@ -264,8 +286,22 @@ $.each(contentArray, function(index, newLine) {
 </code></pre>
 <p>Block quotes:</p>
 <blockquote>
-<p>Inspect anything brought into the house hopped up on goofballs give attitude flop over hide when guests come over chase mice lick butt behind the couch make muffins, attack feet flop over rub face on everything chew ipad power cord stand in front of the computer screen intrigued by the shower sweet beast under the bed why must they do that, intently sniff hand shake treat hunt anything that moves destroy couch sweet beast under the bed intently sniff hand intrigued by the shower chew ipad power cord.</p>
+<p>And in her mind saw again the line of desert hills beyond the stone balustrade of the hotel room balcony, and the faint crease of dawn-light above, suddenly swamped by the stuttering pulses of silent fire from beyond the horizon. She had watched – dazed and dazzled and wondering – as that distant eruption of annihilation had lit up the face of her lover</p>
 </blockquote>
+<h2 id="sec:footnotes-sidenotes">Footnotes, sidenotes</h2>
+<p>It has traditionally<sup class="footnote-ref"><a href="#fn-1" id="fnref-1" data-footnote-ref>1</a></sup> been considered a necessity that any blog worthy of the name be overrun by a hedonistic number of footnotes that the author<sup class="footnote-ref"><a href="#fn-2" id="fnref-2" data-footnote-ref>2</a></sup> uses to go on pointless tangents, and it is therefore important that this blog support this worthy activity. Margin comments are supported (on the left and the right). You can float quotes (or whatever) to the left or the right</p>
+<div class="side side-right">
+<p>A thing on the right, why not? It can be anything, though I doubt the full text of <em>Moby Dick</em> would be a good choice</p>
+</div>
+<div class="quote-right">
+<blockquote>
+<p>I am a blockquote that has been floated to the right of the page. The author was so preoccupied with whether or not she could, she didn’t stop to think if she should.</p>
+</blockquote>
+</div>
+<p>I … cannot think of anything except evil<sup class="footnote-ref"><a href="#fn-3" id="fnref-3" data-footnote-ref>3</a></sup> applications.</p>
+<p>Oh well.</p>
+<p>Such a shame.</p>
+<p>Moving on.</p>
 <h2 id="sec:equations">Equations</h2>
 <p>Inline equations work for simple expressions like \(x^2\), but it’s better to switch to display mode for more complex expressions. If I wanted to illustrate that a Maclaurin series expansion is a <a href="https://en.wikipedia.org/wiki/Taylor_series">Taylor series</a> expansion of \(f(x)\) around \(x = 0\), I’d do this:</p>
 <p>$$
@@ -479,10 +515,24 @@ msg |&gt;
 </code></pre>
 <p><br><br><hr>
 <a href="https://liteblog.djnavarro.net/">liteblog.djnavarro.net</a></p>
+<section class="footnotes" data-footnotes>
+<ol>
+<li id="fn-1">
+<p>By homosexuals <a href="#fnref-1" class="footnote-backref" data-footnote-backref data-footnote-backref-idx="1" aria-label="Back to reference 1">↩</a></p>
+</li>
+<li id="fn-2">
+<p>Noted transsexual <a href="#fnref-2" class="footnote-backref" data-footnote-backref data-footnote-backref-idx="2" aria-label="Back to reference 2">↩</a></p>
+</li>
+<li id="fn-3">
+<p>Bisexual <a href="#fnref-3" class="footnote-backref" data-footnote-backref data-footnote-backref-idx="3" aria-label="Back to reference 3">↩</a></p>
+</li>
+</ol>
+</section>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/combine/npm/katex@0.16.19/dist/katex.min.js,npm/katex@0.16.19/dist/contrib/auto-render.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/@xiee/utils@1.13.60/js/render-katex.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@xiee/utils@1.13.60/js/sidenotes.min.js" defer></script>
 </body>
 </html>
