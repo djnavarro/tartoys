@@ -15,15 +15,6 @@ output:
 #| label: setup
 #| echo: false
 .blog <- readRDS("../_liteblog.rds")
-
-# override the default print method for data frames
-print_tinker <- function(x, ...) {
-  if (inherits(x, "data.frame")) {
-    chr <- xfun:::record_print.default(x, ...)
-    return(xfun::record_print("hello", ...))
-  }
-  xfun::record_print(x, ...)
-}
 ```
 
 On this page I'll walk through the code used to produce the "spell dice" plot that I posted on social media. It's not the most exciting code I've ever written but it was useful as a tiny side project that I could use to teach myself targets. Note that this post doesn't use targets to render the plot, except in the trivial sense the entire blog is built with targets. Within the post, it's just regular R code. Speaking of which, I suppose I'd best load the packages that the plot relies on:

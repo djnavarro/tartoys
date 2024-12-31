@@ -15,15 +15,6 @@ output:
 #| label: setup
 #| echo: false
 .blog <- readRDS("../_liteblog.rds")
-
-# override the default print method for data frames
-print_tinker <- function(x, ...) {
-  if (inherits(x, "data.frame")) {
-    chr <- xfun:::record_print.default(x, ...)
-    return(xfun::record_print("hello", ...))
-  }
-  xfun::record_print(x, ...)
-}
 ```
 
 This is the code used to produce the "schools of magic" dendrogram/heatmap plot that I posted on social media. 
