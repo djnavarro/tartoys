@@ -3,27 +3,14 @@ title: 404
 output:
   litedown::html_format:
     meta:
-      css: "../_liteblog.css"
+      css: ["@article", "../_liteblog.css"]
+      js: ["@sidenotes"]
+      include-before: "_liteblog-header.html"
+      include-after: "_liteblog-footer.html"
     options:
       toc: false
       js_highlight:
         package: prism
         style: tomorrow
 ---
-
-```{r}
-#| label: setup
-#| echo: false
-source("../_liteblog.R")
-```
-
-Page not found
-
-```{r}
-#| label: footer
-#| echo: false
-#| results: asis
-.blog <- readRDS("../_liteblog.rds")
-.blog$write_footer()
-```
 
