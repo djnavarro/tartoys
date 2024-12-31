@@ -28,7 +28,7 @@ code {
 }
 
 :not(pre) > code, code[class], .box > div {
-  background-color: #333;
+  background-color: #2d2d2d;
 }
 
 pre > code:not([class]), pre > .language-plain, .box {
