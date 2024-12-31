@@ -21,6 +21,10 @@ In the dying days of 2024, a woman who should have been doing something useful l
 .blog$write_post_list()
 ```
 
+Should you have, in some drug-addled state no doubt, followed a capricious rabbit down some dark internet hold and ended up here by accident, your best bet is to close the browser and take a few deep breaths. You would be ill-advised to go to [blog.djnavarro.net](https://blog.djnavarro.net) to find other things I have written, and even more poorly-advised to point your browser at [djnavarro.net](https://djnavarro.net). 
+
+The art at [art.djnavarro.net](https://art.djnavarro.net) is kind of pretty though. 
+
 ```{r}
 #| label: footer
 #| echo: false
