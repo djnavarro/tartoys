@@ -21,7 +21,8 @@ Liteblog <- R6::R6Class(
       files <- fs::dir_ls(
         path = fs::path(self$root, self$source),
         recurse = TRUE,
-        regexp = self$pattern
+        regexp = self$pattern,
+        type = "file"
       )
       unname(unclass(files))
     },
@@ -32,7 +33,8 @@ Liteblog <- R6::R6Class(
         recurse = TRUE,
         regexp = self$pattern,
         invert = TRUE,
-        all = TRUE
+        all = TRUE,
+        type = "file"
       )
       unname(unclass(files))
     },
