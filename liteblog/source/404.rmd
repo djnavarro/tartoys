@@ -1,5 +1,5 @@
 ---
-title:  404.rmd
+title:  404
 output:
   litedown::html_format:
     meta:
@@ -14,7 +14,7 @@ options:
 source("../_liteblog.R")
 ```
 
-Text
+Page not found
 
 ```{r}
 #| label: footer
