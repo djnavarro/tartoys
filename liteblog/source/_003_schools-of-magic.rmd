@@ -3,9 +3,10 @@ title: The schools of magic plot
 output:
   litedown::html_format:
     meta:
-      css: "../_liteblog.css"
+      css: ["@article", "../_liteblog.css"]
+      js: ["@sidenotes"]
     options:
-      toc: false
+      toc: true
       js_highlight:
         package: prism
         style: tomorrow

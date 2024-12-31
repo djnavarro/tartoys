@@ -3,7 +3,8 @@ title: Targets, litedown, and D&D spells
 output:
   litedown::html_format:
     meta:
-      css: "../_liteblog.css"
+      css: ["@article", "../_liteblog.css"]
+      js: ["@sidenotes"]
     options:
       toc: false
       js_highlight:

@@ -3,7 +3,8 @@ title:  Hello cruel world
 output:
   litedown::html_format:
     meta:
-      css: "../_liteblog.css"
+      css: ["@article", "../_liteblog.css"]
+      js: ["@sidenotes"]
     options:
       toc: true
       js_highlight:
@@ -88,7 +89,37 @@ $.each(contentArray, function(index, newLine) {
 
 Block quotes: 
 
-> Inspect anything brought into the house hopped up on goofballs give attitude flop over hide when guests come over chase mice lick butt behind the couch make muffins, attack feet flop over rub face on everything chew ipad power cord stand in front of the computer screen intrigued by the shower sweet beast under the bed why must they do that, intently sniff hand shake treat hunt anything that moves destroy couch sweet beast under the bed intently sniff hand intrigued by the shower chew ipad power cord.
+> And in her mind saw again the line of desert hills beyond the stone balustrade of the hotel room balcony, and the faint crease of dawn-light above, suddenly swamped by the stuttering pulses of silent fire from beyond the horizon. She had watched – dazed and dazzled and wondering – as that distant eruption of annihilation had lit up the face of her lover
+
+## Footnotes, sidenotes
+
+It has traditionally[^1] been considered a necessity that any blog worthy of the name be overrun by a hedonistic number of footnotes that the author[^2] uses to go on pointless tangents, and it is therefore important that this blog support this worthy activity. Margin comments are supported (on the left and the right). You can float quotes (or whatever) to the left or the right
+
+[^1]: By homosexuals
+
+[^2]: Noted transsexual
+
+::: {.side .side-right}
+
+A thing on the right, why not? It can be anything, though I doubt the full text of *Moby Dick* would be a good choice
+
+:::
+
+::: {.quote-right}
+
+> I am a blockquote that has been floated to the right of the page. The author was so preoccupied with whether or not she could, she didn't stop to think if she should. 
+
+:::
+
+I ... cannot think of anything except evil[^3] applications.
+
+[^3]: Bisexual
+
+Oh well.
+
+Such a shame.
+
+Moving on.
 
 ## Equations
 
