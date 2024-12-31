@@ -19,14 +19,14 @@ list(
   tar_target(blog_css, blog$css, format = "file"),
 
   # detect file paths
-  tar_target(post_list, blog$find_posts()),
-  tar_target(static_list, blog$find_static()),
+  tar_target(post_paths, blog$find_posts()),
+  tar_target(static_paths, blog$find_static()),
 
   # specify file targets
-  tar_target(post, post_list, pattern = map(post_list), format = "file"),
-  tar_target(static, static_list, pattern = map(static_list), format = "file"),
+  tar_target(post_files, post_paths, pattern = map(post_paths), format = "file"),
+  tar_target(static_files, static_paths, pattern = map(static_paths), format = "file"),
 
   # fuse/copy targets
-  tar_target(fuse, blog$fuse_post(post, blog_css), pattern = map(post)),
-  tar_target(copy, blog$copy_static(static), pattern = map(static))
+  tar_target(post_fuse, blog$fuse_post(post_files, blog_css), pattern = map(post_files)),
+  tar_target(static_copy, blog$copy_static(static_files), pattern = map(static_files))
 )
