@@ -8,6 +8,20 @@ body {
   color: #ccc;
 }
 
+.body, .side, .footnote-backref, .footnote-ref, .footnote-ref:hover,
+.side-right, .side-left, .footnotes {
+  background-color: #222;
+  color: #ccc;
+  box-shadow: none;
+}
+.frontmatter {
+  box-shadow: none;
+}
+.note-ref:hover + .side {
+  background-color: #222;
+  border: 1px solid #666;
+}
+
 body, .abstract, code, .footnotes, #refs { font-size: 1em; }
 
 li li { font-size: .95em; }
@@ -56,9 +70,9 @@ pre > .error { background: #f8d7da; border-color: #f8d7da; }
 
 table {
   margin: auto; border-top: 1px solid #666;
-  thead th { border-bottom: 1px solid #333; }
+  thead th { border-bottom: 1px solid #666; }
   th, td { padding: 5px; }
-  thead, tfoot, tr:nth-child(even) { background: #333; }
+  thead, tfoot, tr:nth-child(even) { background: #222; }
 }
 
 .table-full {
@@ -67,10 +81,11 @@ table {
 }
 
 blockquote {
-  color: #333;
   margin: 0;
   padding: 1px 1em;
-  border-left: .5em solid #ddd;
+  border-left: .5em solid #333;
+  background: #222;
+  color: #ccc;
 }
 
 hr, .footnotes::before {
@@ -78,6 +93,11 @@ hr, .footnotes::before {
 }
 
 .frontmatter { text-align: center; }
+
+#TOC {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
 
 #TOC .numbered {
   padding-left: 0;
