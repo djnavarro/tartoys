@@ -57,12 +57,12 @@ Liteblog <- R6::R6Class(
     },
 
     copy_static = function(file) {
-      fs::dir_create(fs::path(self$root, self$output))
       destination <- file |>
         stringr::str_replace(
           pattern = paste0("/", self$source, "/"),
           replacement = paste0("/", self$output, "/")
         )
+      fs::dir_create(fs::path_dir(destination))
       fs::file_copy(
         path = file,
         new_path = destination,
