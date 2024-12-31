@@ -34,7 +34,8 @@ Liteblog <- R6::R6Class(
       unname(unclass(files))
     },
 
-    fuse_post = function(file) {
+    # dots allow targets to track dependencies
+    fuse_post = function(file, ...) {
       output_path <- litedown::fuse(file)
       output_file <- fs::path_file(output_path)
       if (stringr::str_detect(output_file, "^_")) {
