@@ -8,7 +8,7 @@
 <style type="text/css">
 body {
   font-family: sans-serif;
-  max-width: 800px;
+  max-width: 1000px;
   margin: auto;
   padding: 1em;
   line-height: 1.5;
@@ -20,18 +20,30 @@ body, .abstract, code, .footnotes, #refs { font-size: 1em; }
 
 li li { font-size: .95em; }
 
-ul:has(li > input[type="checkbox"]) { list-style: none; padding-left: 1em; }
+ul:has(li > input[type="checkbox"]) {
+  list-style: none;
+  padding-left: 1em;
+}
 
 *, :before, :after { box-sizing: border-box; }
 a { color: steelblue; }
 pre, img { max-width: 100%; }
 pre, pre:hover { white-space: pre-wrap; word-break: break-all; }
 pre code { display: block; padding: 1em; overflow-x: auto; }
-code { font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace; }
 
-:not(pre) > code, code[class], .box > div { background-color: #f8f8f8; }
+code {
+  font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
 
-pre > code:not([class]), pre > .language-plain, .box { background-color: inherit; border: 1px solid #eee; }
+:not(pre) > code, code[class], .box > div {
+  background-color: #2d2d2d;
+}
+
+pre > code:not([class]), pre > .language-plain, .box {
+  background-color: inherit;
+  border: 1px solid #ddd;
+}
+
 pre > .message { border-color: #9eeaf9; }
 pre > .warning { background: #fff3cd; border-color: #fff3cd; }
 pre > .error { background: #f8d7da; border-color: #f8d7da; }
@@ -52,9 +64,9 @@ pre > .error { background: #f8d7da; border-color: #f8d7da; }
 
 table {
   margin: auto; border-top: 1px solid #666;
-  thead th { border-bottom: 1px solid #ddd; }
+  thead th { border-bottom: 1px solid #333; }
   th, td { padding: 5px; }
-  thead, tfoot, tr:nth-child(even) { background: #eee; }
+  thead, tfoot, tr:nth-child(even) { background: #333; }
 }
 
 .table-full {
@@ -63,10 +75,10 @@ table {
 }
 
 blockquote {
-  color: #666;
+  color: #333;
   margin: 0;
   padding: 1px 1em;
-  border-left: .5em solid #eee;
+  border-left: .5em solid #ddd;
 }
 
 hr, .footnotes::before { border: 1px dashed #ddd; }
@@ -78,6 +90,7 @@ hr, .footnotes::before { border: 1px dashed #ddd; }
 }
 
 table, .body h2 { border-bottom: 1px solid #666; }
+
 .body .appendix, .appendix ~ h2 { border-bottom-style: dashed; }
 .main-number::after { content: "."; }
 .ref-number-fig::after, .ref-number-tab::after { content: ":"; }
@@ -115,6 +128,7 @@ section.footnotes {
   body { max-width: 100%; }
   tr, img { page-break-inside: avoid; }
 }
+
 @media only screen and (min-width: 992px) {
   pre { white-space: pre; }
 }
