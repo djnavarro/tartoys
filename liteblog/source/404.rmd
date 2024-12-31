@@ -21,6 +21,6 @@ Page not found
 #| echo: false
 #| results: asis
 .blog <- readRDS("../_liteblog.rds")
-.blog$write_footer(depth = 0)
+.blog$write_footer()
 ```
 

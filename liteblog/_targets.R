@@ -10,7 +10,8 @@ list(
       root   = rprojroot::find_root(rprojroot::has_file("_liteblog.R")),
       source = "source",
       output = "site",
-      css    = "_liteblog.css"
+      css    = "_liteblog.css",
+      url    = "liteblog.djnavarro.net"
     )
   ),
 

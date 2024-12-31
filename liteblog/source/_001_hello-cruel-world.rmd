@@ -20,6 +20,6 @@ Text
 #| label: footer
 #| echo: false
 #| results: asis
-.blog$write_footer(depth = 2)
+.blog$write_footer()
 ```
 

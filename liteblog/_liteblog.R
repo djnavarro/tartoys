@@ -2,17 +2,19 @@ Liteblog <- R6::R6Class(
   classname = "Liteblog",
   public = list(
 
-    initialize = function(root, source, output, css) {
+    initialize = function(root, source, output, css, url) {
       self$root <- root
       self$source <- source
       self$output <- output
       self$css <- css
+      self$url <- url
     },
 
     root = NULL,
     source = NULL,
     output = NULL,
     css = NULL,
+    url = NULL,
     pattern = "[.][rR]?md$",
 
     find_posts = function() {
@@ -91,51 +93,13 @@ Liteblog <- R6::R6Class(
 
     },
 
-    write_footer = function(depth = 0) {
-      home <- paste(rep("..", depth), collapse = "/")
-      if (depth == 0) home <- "./"
+    write_footer = function() {
       cat(
-        "<br><br>",
-        paste0("<a href=\"", home, "/\">←</a>"),
+        "<br><br><hr>",
+        paste0("<a href=\"https://", self$url, "/\">", self$url,"</a>"),
         sep = "\n"
       )
     }
   )
 )
-
-#
-#   # user convenience
-#   new_blog_post <- function(file) {
-#     out <- fs::path(opt$root, opt$source, file)
-#     depth <- length(stringr::str_extract_all(file, "_")[[1]])
-#     rmd <- c(
-#       "---",
-#       paste("title: ", file),
-#       "output:",
-#       "  litedown::html_format:",
-#       "    meta:",
-#       "      css: [\"default\", \"../_liteblog.css\"]",
-#       "options:",
-#       "  toc: true",
-#       "---",
-#       "",
-#       "```{r}",
-#       "#| label: setup",
-#       "#| echo: false",
-#       "source(\"../_liteblog.R\")",
-#       "```",
-#       "",
-#       "Text",
-#       "",
-#       "```{r}",
-#       "#| label: footer",
-#       "#| echo: false",
-#       "#| results: asis",
-#       paste0(".blog$footer(depth = ", depth, ")"),
-#       "```",
-#       ""
-#     )
-#     fs::dir_create(fs::path(opt$root, opt$source))
-#     brio::write_lines(rmd, out)
-#   }
 
