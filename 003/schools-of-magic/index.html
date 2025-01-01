@@ -259,10 +259,19 @@ print(dat)
 <h3 id="sec:dissimilarity-data-for-the-dendrograms">Dissimilarity data for the dendrograms</h3>
 <p>The data structure that we need at this step is slightly more complicated, because what we want to display on each axis is a hierarchical clustering, of the sort typically produced by <code>hclust()</code>. In a distant, distant past I actually wrote my PhD thesis on clustering and scaling tools used to represent item (dis)similarities, and as such I’m acutely aware that these tools are extremely sensitive to the way you define similarity (or dissimilarity, or distance, or association, or whatever…). So I’ll be a little careful here, because if you do this in a thoughtless way you get stupid answers.</p>
 <p>Let’s start by reorganising the <code>dat</code> data frame into a matrix form. The <code>mat</code> matrix below contains the exact same information as the data frame: each cell in the matrix represents the number of castable spells for a specific combination of class and school.</p>
-<pre><code class="language-r">with_short_names &lt;- function(mat) {
-  rownames(mat) &lt;- str_trunc(rownames(mat), width = 6, ellipsis = &quot;.&quot;)
-  colnames(mat) &lt;- str_trunc(colnames(mat), width = 6, ellipsis = &quot;.&quot;)
-  mat
+<pre><code class="language-r">print_truncated &lt;- function(x) {
+  if (inherits(x, &quot;matrix&quot;)) {
+    rownames(x) &lt;- str_trunc(rownames(x), width = 6, ellipsis = &quot;.&quot;)
+    colnames(x) &lt;- str_trunc(colnames(x), width = 6, ellipsis = &quot;.&quot;)
+  }
+  if (inherits(x, &quot;dist&quot;)) {
+    attr(x, &quot;Labels&quot;) &lt;- str_trunc(
+      attr(x, &quot;Labels&quot;), 
+      width = 6, 
+      ellipsis = &quot;.&quot;
+    )
+  }
+  print(round(x, digits = 3))
 }
 
 mat &lt;- dat |&gt;
@@ -276,7 +285,7 @@ rownames(mat) &lt;- mat$class
 mat$class &lt;- NULL
 mat &lt;- as.matrix(mat)
 
-print(with_short_names(mat))
+print_truncated(mat)
 </code></pre>
 <pre><code>#&gt;        Evoca. Abjur. Trans. Encha. Necro. Divin. Illus. Conju.
 #&gt; Bard        7     16     18     28      5     18     22      8
@@ -294,56 +303,56 @@ print(with_short_names(mat))
 school_distro &lt;- t(mat) / (replicate(nrow(mat), colSums(mat)))
 </code></pre>
 <p>The <code>class_distro</code> matrix is the one that describes classes as a distribution over schools, and you can see in the printout here that when described in this fashion the paladin row and the cleric row do look rather similar to each other:</p>
-<pre><code class="language-r">print(with_short_names(class_distro), digits = 2)
+<pre><code class="language-r">print_truncated(class_distro)
 </code></pre>
 <pre><code>#&gt;        Evoca. Abjur. Trans. Encha. Necro. Divin. Illus. Conju.
-#&gt; Bard    0.057  0.131  0.148  0.230  0.041  0.148 0.1803  0.066
-#&gt; Cleric  0.110  0.303  0.119  0.073  0.128  0.156 0.0092  0.101
-#&gt; Druid   0.142  0.142  0.275  0.075  0.058  0.117 0.0167  0.175
-#&gt; Palad.  0.081  0.432  0.081  0.135  0.081  0.135 0.0000  0.054
-#&gt; Ranger  0.062  0.229  0.271  0.062  0.021  0.188 0.0208  0.146
-#&gt; Sorce.  0.226  0.053  0.248  0.098  0.068  0.060 0.1053  0.143
-#&gt; Warlo.  0.058  0.116  0.087  0.174  0.145  0.130 0.1594  0.130
-#&gt; Wizard  0.154  0.113  0.210  0.077  0.092  0.097 0.1333  0.123
+#&gt; Bard    0.057  0.131  0.148  0.230  0.041  0.148  0.180  0.066
+#&gt; Cleric  0.110  0.303  0.119  0.073  0.128  0.156  0.009  0.101
+#&gt; Druid   0.142  0.142  0.275  0.075  0.058  0.117  0.017  0.175
+#&gt; Palad.  0.081  0.432  0.081  0.135  0.081  0.135  0.000  0.054
+#&gt; Ranger  0.062  0.229  0.271  0.062  0.021  0.188  0.021  0.146
+#&gt; Sorce.  0.226  0.053  0.248  0.098  0.068  0.060  0.105  0.143
+#&gt; Warlo.  0.058  0.116  0.087  0.174  0.145  0.130  0.159  0.130
+#&gt; Wizard  0.154  0.113  0.210  0.077  0.092  0.097  0.133  0.123
 </code></pre>
 <p>A similar phenomenon is observed in the <code>school_distro</code> matrix, where you can see that the rows for abjuration and divination are quite similar despite the fact that there are a lot more abjuration spells than divination spells:</p>
-<pre><code class="language-r">print(with_short_names(school_distro), digits = 2)
+<pre><code class="language-r">print_truncated(school_distro)
 </code></pre>
 <pre><code>#&gt;         Bard Cleric Druid Palad. Ranger Sorce. Warlo. Wizard
-#&gt; Evoca. 0.066  0.113 0.160  0.028  0.028  0.283  0.038   0.28
-#&gt; Abjur. 0.123  0.254 0.131  0.123  0.085  0.054  0.062   0.17
-#&gt; Trans. 0.113  0.081 0.206  0.019  0.081  0.206  0.037   0.26
-#&gt; Encha. 0.301  0.086 0.097  0.054  0.032  0.140  0.129   0.16
-#&gt; Necro. 0.075  0.209 0.104  0.045  0.015  0.134  0.149   0.27
-#&gt; Divin. 0.182  0.172 0.141  0.051  0.091  0.081  0.091   0.19
-#&gt; Illus. 0.286  0.013 0.026  0.000  0.013  0.182  0.143   0.34
-#&gt; Conju. 0.079  0.109 0.208  0.020  0.069  0.188  0.089   0.24
+#&gt; Evoca. 0.066  0.113 0.160  0.028  0.028  0.283  0.038  0.283
+#&gt; Abjur. 0.123  0.254 0.131  0.123  0.085  0.054  0.062  0.169
+#&gt; Trans. 0.112  0.081 0.206  0.019  0.081  0.206  0.038  0.256
+#&gt; Encha. 0.301  0.086 0.097  0.054  0.032  0.140  0.129  0.161
+#&gt; Necro. 0.075  0.209 0.104  0.045  0.015  0.134  0.149  0.269
+#&gt; Divin. 0.182  0.172 0.141  0.051  0.091  0.081  0.091  0.192
+#&gt; Illus. 0.286  0.013 0.026  0.000  0.013  0.182  0.143  0.338
+#&gt; Conju. 0.079  0.109 0.208  0.020  0.069  0.188  0.089  0.238
 </code></pre>
 <p>We are now in a position to convert both of these to distance/distance matrices. Notwithstanding the fact that it’s probably not the ideal way to describe similarity between distributions, I’ll call <code>dist()</code> using the default Euclidean distance measure. I mean, sure, I could probably do something fancy with <a href="https://en.wikipedia.org/wiki/Jensen%E2%80%93Shannon_divergence">Jensen-Shannon divergence</a> here, but in my experience the metric you use to measure distributional similarity is <em>far</em> less important than the manner in which you construct the distributions from raw features in the first place, so I’m not going to sweat this one. Here’s our measure of class dissimilarity:</p>
 <pre><code class="language-r">class_dissim  &lt;- dist(class_distro)
-print(with_short_names(class_dissim), digits = 2)
+print_truncated(class_dissim)
 </code></pre>
-<pre><code>#&gt;          Bard Cleric Druid Paladin Ranger Sorcerer Warlock
-#&gt; Cleric   0.31                                             
-#&gt; Druid    0.30   0.25                                      
-#&gt; Paladin  0.37   0.17  0.38                                
-#&gt; Ranger   0.29   0.21  0.15    0.31                        
-#&gt; Sorcerer 0.29   0.34  0.17    0.47   0.29                 
-#&gt; Warlock  0.15   0.27  0.29    0.37   0.31     0.28        
-#&gt; Wizard   0.22   0.26  0.15    0.39   0.23     0.12    0.20
+<pre><code>#&gt;         Bard Cleric Druid Palad. Ranger Sorce. Warlo.
+#&gt; Cleric 0.309                                         
+#&gt; Druid  0.296  0.251                                  
+#&gt; Palad. 0.373  0.167 0.381                            
+#&gt; Ranger 0.294  0.213 0.146  0.313                     
+#&gt; Sorce. 0.286  0.342 0.168  0.468  0.292              
+#&gt; Warlo. 0.151  0.270 0.288  0.371  0.312  0.279       
+#&gt; Wizard 0.218  0.259 0.152  0.389  0.228  0.118  0.196
 </code></pre>
 <p>Here’s our measure of school dissimilarity:</p>
 <pre><code class="language-r">school_dissim &lt;- dist(school_distro)
-print(with_short_names(class_dissim), digits = 2)
+print_truncated(school_dissim)
 </code></pre>
-<pre><code>#&gt;          Bard Cleric Druid Paladin Ranger Sorcerer Warlock
-#&gt; Cleric   0.31                                             
-#&gt; Druid    0.30   0.25                                      
-#&gt; Paladin  0.37   0.17  0.38                                
-#&gt; Ranger   0.29   0.21  0.15    0.31                        
-#&gt; Sorcerer 0.29   0.34  0.17    0.47   0.29                 
-#&gt; Warlock  0.15   0.27  0.29    0.37   0.31     0.28        
-#&gt; Wizard   0.22   0.26  0.15    0.39   0.23     0.12    0.20
+<pre><code>#&gt;        Evoca. Abjur. Trans. Encha. Necro. Divin. Illus.
+#&gt; Abjur.  0.320                                          
+#&gt; Trans.  0.122  0.279                                   
+#&gt; Encha.  0.323  0.284  0.270                            
+#&gt; Necro.  0.218  0.200  0.226  0.281                     
+#&gt; Divin.  0.271  0.133  0.203  0.181  0.179              
+#&gt; Illus.  0.319  0.409  0.301  0.217  0.313  0.303       
+#&gt; Conju.  0.134  0.251  0.073  0.273  0.178  0.184  0.319
 </code></pre>
 <h3 id="sec:hierarchical-clustering-for-the-dendrograms">Hierarchical clustering for the dendrograms</h3>
 <p>After all that effort in constructing the dissimilarity matrices, the hierarchical clustering is something of an anticlimax. The only substantive choice we need to make here is whether to use single-link, complete-link, average-link, or some other method for agglomeration. This does matter somewhat, at least in my experience, but I’m also feeling lazy so I’m going to go with average-link because it feels appropriate to me in this context:</p>
